@@ -61,6 +61,16 @@
  #dates .day{max-width:34px}
  #datesButton{scroll-margin:20px}
 }
+
+#dates .priced-day{display:grid;justify-items:center;gap:3px;min-width:0}
+#dates .day-price{font-size:clamp(.58rem,2.4vw,.72rem);font-weight:700;color:#f1cf99;white-space:nowrap;min-height:1.15em}
+#dates .day-price[aria-hidden=true]{visibility:hidden}
+#dates .priced-day .day{width:100%;max-width:36px}
+#dates .day-price.is-blocked{opacity:.55;text-decoration:line-through}
+#dates .combo-label{display:inline-block;margin:4px 0 0;padding:4px 9px;border-radius:20px;background:#f4e8cf;color:#241b13;font-weight:750;font-size:.85rem}
+#dates .combo-label[hidden]{display:none}
+@keyframes comboChange{from{opacity:.45;transform:translateY(4px) scale(.96)}to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:no-preference){#dates .combo-label.changed{animation:comboChange .34s ease-out}}
 </style>
 </head>
 <body>
@@ -109,7 +119,7 @@
 </div></div>
 <div class="monthbar"><button id="prevMonth" type="button" aria-label="Mês anterior">‹</button><strong id="month" aria-live="polite"></strong><button id="nextMonth" type="button" aria-label="Próximo mês">›</button></div>
 <div class="calendar" id="calendar" role="group" aria-label="Noites da estadia"></div>
-<p id="legend"><span>×</span> Selecionada <span>—</span> Indisponível</p><p id="summary" role="status"></p>
+<p id="legend"><span>×</span> Selecionada <span>—</span> Indisponível</p><p id="package-note" style="font-size:.8rem">Preço por noite. Réveillon e Carnaval são pacotes de 5 noites.</p><div id="comboLabel" class="combo-label" aria-live="polite" hidden></div><p id="summary" role="status"></p>
 <div class="actions"><a id="whatsapp" target="_blank" rel="noopener noreferrer" hidden>Enviar datas no WhatsApp</a><button id="clearNights" type="button">Limpar</button><button id="closeDates" type="button">Voltar</button></div>
 </dialog>
 <script>
@@ -281,11 +291,33 @@ function renderCalendar(focusStamp){
     button.setAttribute('aria-label',dateFormat.format(stamp)+(occupied(stamp)?' — indisponível':''));
     button.setAttribute('aria-pressed',String(start!==null&&stamp>=start&&stamp<=(end??start)));
     button.onclick=()=>selectNight(stamp);
-    grid.append(button);
+    const cell=document.createElement('div');
+    cell.className='priced-day';
+    const price=document.createElement('span');
+    price.className='day-price';
+    const offer=offers.find(item=>stamp>=item.a&&stamp<=item.b);
+    if(offer&&stamp>=minimum){
+      const rate=offer.packagePrice?offer.packagePrice/5:offer.rate;
+      price.textContent=currency.format(rate);
+      if(occupied(stamp))price.classList.add('is-blocked');
+      button.setAttribute('aria-label',button.getAttribute('aria-label')+', '+currency.format(rate)+' por noite'+(offer.packagePrice?', pacote de cinco noites':''));
+    }else{price.setAttribute('aria-hidden','true');price.textContent='—';}
+    cell.append(price,button);
+    grid.append(cell);
     if(stamp===focusStamp)button.focus();
   }
   const hostWhatsapp=$('hostWhatsapp');
   hostWhatsapp.href='https://wa.me/554784911003';
+  const combo=$('comboLabel');
+  const countSelected=start===null?0:((end??start)-start)/day+1;
+  const comboText=countSelected>=2&&!selectionError?'Combo '+countSelected+' noites':'';
+  if(combo.textContent!==comboText){
+    combo.textContent=comboText;
+    combo.classList.remove('changed');
+    void combo.offsetWidth;
+    combo.classList.add('changed');
+  }
+  combo.hidden=!comboText;
   whatsapp.hidden=start===null||!!selectionError;
   if(selectionError){summary.textContent=selectionError;return;}
   if(start===null){summary.textContent=minimum>lastNight?'Temporada encerrada.':'Toque em uma data para começar.';whatsapp.removeAttribute('href');return;}
