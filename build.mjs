@@ -22,3 +22,5 @@ for(const [name,data] of Object.entries(files))await writeFile('dist/media/'+nam
 await writeFile('dist/index.html', page.replace('</title>', '</title>\n' + seo));
 await writeFile('dist/robots.txt', 'User-agent: *\nAllow: /\nSitemap: ' + new URL('sitemap.xml', canonical).href + '\n');
 await writeFile('dist/sitemap.xml', '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url><loc>' + escape(canonical) + '</loc></url></urlset>\n');
+
+await cp('maquete.html', 'dist/maquete.html');
