@@ -166,9 +166,9 @@ body{background:#101820;color:var(--paper);font-family:system-ui,sans-serif}
 <p>Apartamento para até 4 hóspedes, com cama king no quarto, sofá retrátil e cama compacta na sala, vista da janela e uma vaga rotativa por estadia. Endereço: Rua Miguel Matte, 130, Balneário Camboriú.</p>
 <p>Réveillon de 29/12/2026 a 03/01/2027: R$ 8.490 por 5 noites. Carnaval de 05 a 10/02/2027: R$ 3.500 por 5 noites. Selecione as suas datas para consultar o preço de hospedagem.</p></section>
 <aside id="introPanel" aria-label="Maquete 3D da Barra Norte" hidden>
-<header><strong>Barra Norte em 3D</strong><button id="introMin" type="button">Recolher</button></header>
+<header><strong>Um dia na Barra Norte</strong><button id="introMin" type="button">Recolher</button></header>
 <div id="introVisual"><div id="modelMount"></div></div>
-<p id="modelHelp">Arraste para girar. Use a roda do mouse ou dois dedos para aproximar.</p>
+<p id="modelHelp">Veja a Barra Norte do amanhecer ao Réveillon em 25 segundos.</p>
 <div class="introActions"><a href="maquete.html" target="_blank" rel="noopener">Abrir em tela cheia</a><button id="introMap" type="button">Ver mapa</button></div>
 </aside>
 <button id="introOpen" type="button" aria-controls="introPanel" aria-expanded="false">Abrir maquete 3D</button>
@@ -447,7 +447,7 @@ $('mapButton').onclick=()=>{
   showRouteAnimation(false);
   $('maps').showModal();
 };
-show(0);
+show(2);
 
 
 const modelPanel=$('introPanel'), modelOpen=$('introOpen');
