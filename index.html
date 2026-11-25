@@ -1,0 +1,317 @@
+<!doctype html>
+<html lang="pt-BR">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Apartamento por temporada em Balneário Camboriú | Pioneiros</title>
+<meta name="description" content="Apartamento por diária no bairro Pioneiros, em Balneário Camboriú. Veja o tour com fotos reais, a vista, uma vaga rotativa e consulte noites de 26/12/2026 a 09/02/2027.">
+<style>
+*{box-sizing:border-box}body{margin:0;background:#141311;color:#fff8e9;font:16px system-ui,sans-serif}button,input{font:inherit}button{cursor:pointer;background:#24211ee6;color:inherit;border:1px solid #fff4d96b;border-radius:26px;padding:8px 14px}button:focus-visible,input:focus-visible{outline:3px solid #ffcf6e;outline-offset:3px}button[aria-current=step],#point{background:#f4e8cf;color:#241b13}.tour{position:relative;overflow:hidden;height:100dvh;min-height:480px}.stage{position:absolute;inset:0;overflow:hidden}.backdrop{position:absolute;inset:-55px;background-position:center;background-size:cover;filter:blur(38px);opacity:.36;pointer-events:none}.shot{position:absolute;inset:0;margin:auto;width:min(100%,56.25dvh);height:100%;overflow:hidden;background:#24211b}.shot img,.shot video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}.shot [hidden],#point[hidden],#missing[hidden]{display:none}.shot video{object-fit:contain}.shade{position:absolute;inset:0;background:linear-gradient(#14110ec9,transparent 23%,transparent 62%,#14110edb);pointer-events:none}.head,.foot{position:absolute;left:clamp(14px,4vw,54px);right:clamp(14px,4vw,54px);display:flex;gap:8px;flex-wrap:wrap;justify-content:space-between;pointer-events:none}.head{top:18px;align-items:start}.foot{bottom:18px;align-items:end}.head button,.foot button{pointer-events:auto}.head p,.foot p{margin:5px 0}h1,h2{font:normal clamp(1.25rem,3vw,2rem) Georgia,serif;margin:0}h2{font-size:clamp(2rem,5vw,3.6rem)}nav{display:flex;gap:5px;flex-wrap:wrap}#point{position:absolute;z-index:2;transform:translate(-50%,-50%);white-space:nowrap;box-shadow:0 0 0 7px #fff3,0 8px 40px #0005}#missing{position:absolute;left:10%;right:10%;top:34%;text-align:center;z-index:2}dialog{color:inherit;background:#29241f;border:1px solid #7c6b57;border-radius:16px;max-width:min(470px,calc(100% - 24px));padding:23px}dialog::backdrop{background:#16100ec7}label{display:grid;gap:5px;margin:10px 0}input{width:100%;min-width:0;color:#211a15;background:#fff4de;border:1px solid #7c6b57;border-radius:5px;padding:7px}output{white-space:pre-line;display:block;margin-top:12px}#play[hidden]{display:none}@media(max-width:560px){.shot{width:100%}.head button,.foot button{font-size:.86rem;padding:6px 9px}} 
+
+#dates{width:min(460px,calc(100% - 24px));max-height:calc(100dvh - 24px);overflow:auto}
+.monthbar,.host{display:flex;align-items:center;gap:12px}.monthbar{justify-content:space-between}
+#month{text-transform:capitalize}.calendar{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:3px;text-align:center;align-items:center;margin:8px 0}
+.weekday{font-size:.81rem;color:#e4d7c0}.day{position:relative;aspect-ratio:1;min-width:0;padding:0;border-radius:50%;line-height:1}
+.day:disabled{opacity:.38;cursor:default}.day[aria-pressed=true]{color:#241b13;background:#f4e8cf}
+.day[aria-pressed=true]::after{content:'×';position:absolute;top:12%;right:11%;font-size:.75rem}
+.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.actions a,.actions button{border-radius:26px;padding:8px 13px;color:inherit;border:1px solid #fff4d96b;text-decoration:none}
+.actions #instagram{background:#f4e8cf;color:#241b13}.actions a:focus-visible{outline:3px solid #ffcf6e}
+.host{margin-top:14px;border-top:1px solid #fff4d946;padding-top:12px}
+.host img{width:52px;height:52px;object-fit:cover;border-radius:50%}
+.host a{color:inherit;text-underline-offset:3px}.host small{display:block}
+#summary{margin:9px 0;min-height:1.4em}#whatsapp[hidden]{display:none}
+#maps{width:min(560px,calc(100% - 24px));max-width:none}#mapFrame{width:100%;height:min(360px,48dvh);border:0;border-radius:10px;background:#1e1a16}
+#dates{width:min(420px,calc(100% - 20px));padding:16px 20px}
+#dates>p{margin:7px 0}
+#dates .host{margin:10px 0;padding:8px 0;border-top:1px solid #fff4d946;border-bottom:1px solid #fff4d946}
+.hostLinks{display:flex;gap:5px;margin-left:auto}
+.hostLinks a{width:40px;height:40px;display:grid;place-items:center;border:1px solid #fff4d96b;border-radius:50%}
+.hostLinks a:last-child{background:#f4e8cf;color:#241b13}
+.hostLinks svg{width:21px;height:21px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linejoin:round}
+#dates .day,.adminDays .day{width:100%;max-width:41px;justify-self:center}
+#dates .day.blocked{text-decoration:line-through;background:#74534b;opacity:.78}
+#legend{font-size:.82rem}#legend span{font-weight:bold;margin-left:6px}
+#dates #whatsapp,#datesButton{background:#f4e8cf;color:#241b13}
+.season{display:inline-block;background:#241b13db;border-radius:5px;padding:4px 8px}
+.adminDays{display:grid;grid-template-columns:repeat(7,1fr);gap:5px}
+.adminDays button[data-paid=true]{background:#95594e;color:white}
+
+#routes{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:10px}
+#routeScene{margin:0;background:#101c2c;border-radius:12px;overflow:hidden}
+#routeScene[hidden],#mapFrame[hidden]{display:none}
+#routeScene svg{display:block;width:100%;height:auto}
+#routeScene figcaption{padding:9px 12px;color:#ffecd2;font-size:.85rem}
+#routeScene text{font:600 14px system-ui;fill:#fff6df}
+#routeScene .path{stroke-dasharray:1;stroke-dashoffset:0}
+#routeScene .firework{opacity:0;transform-box:fill-box;transform-origin:center}
+@keyframes traceTour{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
+@keyframes turnTour{to{transform:rotate(360deg)}}
+@keyframes fireworksTour{0%{opacity:0;transform:scale(.18)}24%{opacity:1}75%,100%{opacity:0;transform:scale(1.4)}}
+@media(prefers-reduced-motion:no-preference){
+ #routeScene:not([hidden]) .path{animation:traceTour 2.4s ease-out both}
+ #routeScene:not([hidden]) .wheel{transform-origin:412px 116px;animation:turnTour 18s linear infinite}
+ #routeScene:not([hidden]) .firework{animation:fireworksTour 2.8s 2.1s infinite}
+ #routeScene:not([hidden]) .firework.second{animation-delay:3s}
+}
+@media(min-width:1360px) and (min-aspect-ratio: 3/2){
+ #dates[open]{position:fixed;inset:50% clamp(22px,3vw,65px) auto auto;transform:translateY(-50%);width:min(420px,calc(50vw - 28.125dvh - clamp(22px,3vw,65px) - 20px));min-width:0;margin:0;max-height:calc(100dvh - 155px);z-index:5;background:#24201cee;box-shadow:0 10px 42px #0005}
+ #dates #closeDates{display:none}
+ #dates .day{max-width:34px}
+ #datesButton{scroll-margin:20px}
+}
+</style>
+<main class="tour">
+<div class="stage" id="stage">
+<div id="backdrop" class="backdrop"></div><div class="shot" id="shot">
+<img id="photo" alt="" hidden><video id="video" playsinline muted preload="metadata" hidden></video>
+
+<button id="point"></button></div><div class="shade"></div>
+</div>
+<header class="head"><div><h1>Apartamento por temporada em Balneário Camboriú</h1><p>Balneário Camboriú · Rua Miguel Matte, 130</p><p class="season">Temporada de 26/12 a 09/02 · Consulte suas noites</p></div><div><button id="mapButton" type="button">Ver localização</button> <button id="datesButton">Escolher noites</button></div></header>
+<footer class="foot"><div><h2 id="name" aria-live="polite"></h2><p id="detail"></p><button id="play" hidden>Reproduzir vídeo</button></div><nav id="nav" aria-label="Pontos da visita"></nav></footer>
+</main>
+<section style="max-width:760px;margin:auto;padding:24px"><h2>Temporada em Pioneiros</h2>
+<p>Apartamento para até 4 hóspedes, com cama king no quarto, sofá retrátil e cama compacta na sala, vista da janela e uma vaga rotativa por estadia. Endereço: Rua Miguel Matte, 130, Balneário Camboriú.</p>
+<p>Réveillon de 29/12/2026 a 03/01/2027: R$ 8.490 por 5 noites. Carnaval de 05 a 10/02/2027: R$ 3.500 por 5 noites. Selecione as suas datas para consultar o preço de hospedagem.</p></section>
+<dialog id="maps" aria-labelledby="mapTitle">
+<h1 id="mapTitle">Localização do prédio</h1>
+<p>Edifício Mar Azul · Rua Miguel Matte, 130, Pioneiros, Balneário Camboriú - SC, 88330-003</p>
+<div id="routes"><button id="realMap" type="button" aria-pressed="true">Mapa</button><button id="animatedRoute" type="button" aria-pressed="false">Animar trajeto e fogos</button></div><iframe id="mapFrame" title="Localização do Edifício Mar Azul no Google Maps" data-src="https://maps.google.com/maps?q=Rua%20Miguel%20Matte%2C%20130%2C%20Pioneiros%2C%20Balne%C3%A1rio%20Cambori%C3%BA%20-%20SC%2C%2088330-003&amp;z=15&amp;output=embed" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe><figure id="routeScene" hidden>
+<svg viewBox="0 0 540 294" role="img" aria-label="Ilustração animada do percurso do apartamento até a roda-gigante na Barra Norte e fogos sobre a praia">
+<defs><linearGradient id="bcSky" x2="0" y2="1"><stop stop-color="#15182d"/><stop offset="1" stop-color="#37516b"/></linearGradient></defs>
+<rect width="540" height="294" fill="url(#bcSky)"/>
+<path d="M0 225Q156 202 311 217T540 196V294H0Z" fill="#867451"/>
+<path d="M0 254Q130 221 312 238T540 216V294H0Z" fill="#204960"/>
+<path d="M0 255Q130 224 312 240T540 218M0 272Q144 238 314 255T540 235" fill="none" stroke="#94c9d0" opacity=".55"/>
+<g fill="#384353" stroke="#a7a8a4"><path d="M54 184V93h64v91M59 93V82h54v11"/><path d="M65 105h12m13 0h12m-37 18h12m13 0h12m-37 18h12m13 0h12m-37 18h12m13 0h12" stroke="#eaca8b" stroke-width="3"/></g>
+<g stroke="#e4ded4" stroke-width="2" fill="none"><path d="m381 190 31-74 32 74m-68 0h72"/><g class="wheel"><circle cx="412" cy="116" r="48"/><g transform="rotate(0 412 116)"><path d="M412 116V68"/><rect x="407" y="62" width="10" height="9" rx="2"/></g><g transform="rotate(45 412 116)"><path d="M412 116V68"/><rect x="407" y="62" width="10" height="9" rx="2"/></g><g transform="rotate(90 412 116)"><path d="M412 116V68"/><rect x="407" y="62" width="10" height="9" rx="2"/></g><g transform="rotate(135 412 116)"><path d="M412 116V68"/><rect x="407" y="62" width="10" height="9" rx="2"/></g><g transform="rotate(180 412 116)"><path d="M412 116V68"/><rect x="407" y="62" width="10" height="9" rx="2"/></g><g transform="rotate(225 412 116)"><path d="M412 116V68"/><rect x="407" y="62" width="10" height="9" rx="2"/></g><g transform="rotate(270 412 116)"><path d="M412 116V68"/><rect x="407" y="62" width="10" height="9" rx="2"/></g><g transform="rotate(315 412 116)"><path d="M412 116V68"/><rect x="407" y="62" width="10" height="9" rx="2"/></g></g><circle cx="412" cy="116" r="4" fill="#edca85"/></g>
+<path d="M86 186C117 212 162 216 203 202S274 172 317 180 364 193 395 182" fill="none" stroke="#1b2635" stroke-width="8"/>
+<path class="path" pathLength="1" d="M86 186C117 212 162 216 203 202S274 172 317 180 364 193 395 182" fill="none" stroke="#f8cf79" stroke-width="4" stroke-linecap="round"/>
+<circle cx="86" cy="186" r="6" fill="#fff0be"/><circle cx="395" cy="182" r="6" fill="#fff0be"/>
+<text x="38" y="72">Apartamento</text><text x="365" y="215">Barra Norte</text><text x="350" y="277">Praia Central</text>
+<g stroke="#ffc86a" stroke-width="2" fill="none" transform="translate(233 88)"><g class="firework"><path d="M0-12V-33M9-9 24-24M12 0H34M9 9 25 25M0 12V33M-9 9-25 25M-12 0H-33M-9-9-24-24"/></g></g>
+<g stroke="#ff98a8" stroke-width="2" fill="none" transform="translate(301 112)"><g class="firework second"><path d="M0-12V-33M9-9 24-24M12 0H34M9 9 25 25M0 12V33M-9 9-25 25M-12 0H-33M-9-9-24-24"/></g></g>
+</svg><figcaption>Percurso e fogos ilustrativos. Veja a distância e o tempo de caminhada no Google Maps.</figcaption></figure>
+<div class="actions"><a href="https://www.google.com/maps/search/?api=1&amp;query=Rua%20Miguel%20Matte%2C%20130%2C%20Pioneiros%2C%20Balne%C3%A1rio%20Cambori%C3%BA%20-%20SC%2C%2088330-003" target="_blank" rel="noopener noreferrer">Abrir no Google Maps</a><a href="https://www.google.com/maps/dir/?api=1&amp;destination=Rua%20Miguel%20Matte%2C%20130%2C%20Pioneiros%2C%20Balne%C3%A1rio%20Cambori%C3%BA%20-%20SC%2C%2088330-003" target="_blank" rel="noopener noreferrer">Como chegar ao prédio</a><a target="_blank" rel="noopener noreferrer" href="https://www.google.com/maps/dir/?api=1&amp;origin=Rua+Miguel+Matte%2C+130%2C+Balne%C3%A1rio+Cambori%C3%BA+-+SC&amp;destination=FG+Big+Wheel%2C+Balne%C3%A1rio+Cambori%C3%BA+-+SC&amp;travelmode=walking">Rota a pé até a roda-gigante</a><form method="dialog"><button>Voltar</button></form></div>
+</dialog>
+<dialog id="dates" aria-labelledby="booking-title">
+<h1 id="booking-title">Escolha suas noites</h1>
+<p>Até 4 hóspedes. Mínimo de 2 noites. Réveillon e Carnaval têm pacotes de 5 noites. Consulte a confirmação e a limpeza com a anfitriã.</p>
+<div class="host"><img alt="Dwight Anne Schmitz" src="media/anfitria.webp"><div><strong>Dwight Anne Schmitz</strong><small>Anfitriã · <a href="https://www.instagram.com/dwightanne.schmitz/" target="_blank" rel="noopener noreferrer">@dwightanne.schmitz</a></small></div><div class="hostLinks">
+<a id="hostWhatsapp" href="https://wa.me/554784911003" target="_blank" rel="noopener noreferrer" title="Chamar no WhatsApp" aria-label="Chamar Dwight Anne no WhatsApp">
+<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11a8 8 0 0 1-12 7l-4 1 1-4a8 8 0 1 1 15-4Z"/><path d="M9 8c0 3 3 6 6 6l1-2-2-1-1 1-2-2 1-1-1-2Z"/></svg></a>
+<a href="https://ig.me/m/dwightanne.schmitz" target="_blank" rel="noopener noreferrer" title="Enviar DM no Instagram" aria-label="Enviar DM para Dwight Anne no Instagram">
+<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".7"/></svg></a>
+</div></div>
+<div class="monthbar"><button id="prevMonth" type="button" aria-label="Mês anterior">‹</button><strong id="month" aria-live="polite"></strong><button id="nextMonth" type="button" aria-label="Próximo mês">›</button></div>
+<div class="calendar" id="calendar" role="group" aria-label="Noites da estadia"></div>
+<p id="legend"><span>×</span> Selecionada <span>—</span> Indisponível</p><p id="summary" role="status"></p>
+<div class="actions"><a id="whatsapp" target="_blank" rel="noopener noreferrer" hidden>Enviar datas no WhatsApp</a><button id="clearNights" type="button">Limpar</button><button id="closeDates" type="button">Voltar</button></div>
+</dialog>
+<script>
+const media = {"entradaPhoto": "media/entradaPhoto.webp", "portaPhoto": "media/portaPhoto.webp", "quartoPhoto": "media/quartoPhoto.webp", "vistaPhoto": "media/vistaPhoto.webp", "garagemPhoto": "media/garagemPhoto.webp", "quartoVideo": "media/quartoVideo.mp4", "vistaVideo": "media/vistaVideo.mp4"};
+const $ = id => document.getElementById(id);
+const scenes = [
+  {key:'entrada',name:'Corredor',detail:'Toque na porta para se aproximar.',point:[48,49],next:1},
+  {key:'porta',name:'Porta do apartamento',point:[58,55],next:2},
+  {key:'quarto',name:'Quarto',point:[30,38],next:3,clip:'quarto'},
+  {key:'vista',name:'Vista da janela',point:[72,52],next:4,clip:'vista'},
+  {key:'garagem',name:'Garagem',detail:'1 vaga rotativa por estadia · 3 acessos pela Rua Miguel Matte.',point:[68,62]}
+];
+const photo=$('photo'),video=$('video'),point=$('point'),dates=$('dates');
+const motion=matchMedia('(prefers-reduced-motion: reduce)');
+let active=0,moving=false;
+const tabs=scenes.map((scene,index)=>{
+  const tab=document.createElement('button');
+  tab.textContent=index===1?'Porta':scene.name;
+  tab.onclick=()=>go(index);
+  $('nav').append(tab);
+  return tab;
+});
+function show(index){
+  active=index;
+  const scene=scenes[index],src=media[scene.key+'Photo'];
+  video.pause();video.hidden=true;
+  photo.hidden=!src;
+  if(src){photo.src=src;photo.alt=scene.name;}
+  $('backdrop').style.backgroundImage=src?'url("'+src+'")':'none';
+  $('name').textContent=scene.name;
+  $('detail').textContent=scene.detail||'';
+  $('play').hidden=!scene.clip||!media[scene.clip+'Video'];
+  $('play').textContent='Reproduzir vídeo';
+  point.hidden=!src;
+  point.style.left=scene.point[0]+'%';
+  point.style.top=scene.point[1]+'%';
+  point.textContent=['Aproximar da porta','Entrar','Olhar pela janela','Ver garagem','Consultar datas'][index];
+  tabs.forEach((tab,i)=>i===index?tab.setAttribute('aria-current','step'):tab.removeAttribute('aria-current'));
+}
+async function go(index){
+  if(index===active||moving)return;
+  const from=scenes[active],to=scenes[index];
+  if(motion.matches||!photo.animate||photo.hidden||!video.hidden){show(index);return;}
+  moving=true;
+  point.hidden=true;
+  const origin=from.point[0]+'% '+from.point[1]+'%';
+  await photo.animate([{transform:'scale(1)',transformOrigin:origin},{transform:'scale('+(active===0&&index===1?2.75:1.4)+')',transformOrigin:origin,opacity:0}],{duration:620,easing:'cubic-bezier(.38,0,.24,1)',fill:'forwards'}).finished.catch(()=>{});
+  photo.getAnimations().forEach(animation=>animation.cancel());
+  show(index);
+  point.hidden=true;
+  if(!photo.hidden){
+    const target=to.point[0]+'% '+to.point[1]+'%';
+    await photo.animate([{transform:'scale(1.15)',transformOrigin:target,opacity:0},{transform:'scale(1)',transformOrigin:target,opacity:1}],{duration:360,easing:'ease-out'}).finished.catch(()=>{});
+  }
+  point.hidden=photo.hidden;
+  moving=false;
+}
+point.onclick=()=>scenes[active].next===undefined?openDates():go(scenes[active].next);
+$('play').onclick=()=>{
+  if(!video.hidden){show(active);return;}
+  video.src=media[scenes[active].clip+'Video'];
+  video.hidden=false;video.controls=true;photo.hidden=true;point.hidden=true;
+  $('play').textContent='Voltar à foto';
+  video.play().catch(()=>{});
+};
+$('datesButton').onclick=()=>openDates();
+$('closeDates').onclick=()=>dates.close();
+const desktopDates = matchMedia('(min-width:1360px) and (min-aspect-ratio: 3/2)');
+function openDates(){
+  if(desktopDates.matches){
+    if(!dates.open)dates.show();
+    $('month').scrollIntoView({block:'nearest',inline:'nearest'});
+    (dates.querySelector('.day[aria-pressed="true"]')||dates.querySelector('.day:enabled')||$('nextMonth')).focus({preventScroll:true});
+  }else if(!dates.open){dates.showModal();}
+}
+function layoutDates(){
+  if(dates.open)dates.close();
+  if(desktopDates.matches)dates.setAttribute('open','');
+}
+desktopDates.addEventListener('change',layoutDates);
+layoutDates();
+function showRouteAnimation(animated){
+  $('mapFrame').hidden=animated;
+  $('routeScene').hidden=!animated;
+  $('realMap').setAttribute('aria-pressed',String(!animated));
+  $('animatedRoute').setAttribute('aria-pressed',String(animated));
+}
+$('realMap').onclick=()=>showRouteAnimation(false);
+$('animatedRoute').onclick=()=>showRouteAnimation(true);
+
+
+const day = 86400000;
+const offers = [
+  ['2026-12-26','2026-12-28',750,0],
+  ['2026-12-29','2027-01-02',0,8490],
+  ['2027-01-03','2027-01-17',700,0],
+  ['2027-01-18','2027-02-04',550,0],
+  ['2027-02-05','2027-02-09',0,3500],
+].map(([a,b,rate,packagePrice])=>({a:Date.parse(a),b:Date.parse(b),rate,packagePrice}));
+const currency=new Intl.NumberFormat('pt-BR',{style:'currency',currency:'BRL',maximumFractionDigits:0});
+function quoteStay(first,last){
+  let total=0;
+  for(const offer of offers){
+    const from=Math.max(first,offer.a),to=Math.min(last,offer.b);
+    if(from>to)continue;
+    if(offer.packagePrice){
+      if(from!==offer.a||to!==offer.b)return {error:'Selecione todas as 5 noites do pacote.'};
+      total+=offer.packagePrice;
+    }else{total+=((to-from)/day+1)*offer.rate;}
+  }
+  return last===first?{error:'Selecione pelo menos 2 noites.'}:{total};
+}
+
+const localToday = new Intl.DateTimeFormat('sv-SE',{dateStyle:'short',timeZone:'America/Sao_Paulo'}).format(new Date());
+const seasonStart = Date.parse('2026-12-26');
+const lastNight = Date.parse('2027-02-09');
+const paidNights = new Set([]);
+const minimum = Math.max(Date.parse(localToday),Date.parse('2026-12-26'));
+const monthFormat = new Intl.DateTimeFormat('pt-BR',{month:'long',year:'numeric',timeZone:'UTC'});
+const dateFormat = new Intl.DateTimeFormat('pt-BR',{timeZone:'UTC'});
+const grid = $('calendar'), summary = $('summary'), whatsapp = $('whatsapp');
+const dateAt = (year,month,date) => Date.UTC(year,month,date);
+const current = new Date(Math.min(minimum,lastNight));
+let year = current.getUTCFullYear(), month = current.getUTCMonth();
+let start = null, end = null, selectionError = '';
+const occupied = stamp => paidNights.has(new Date(stamp).toISOString().slice(0,10));
+function selectNight(stamp){
+  if(stamp<minimum||stamp>lastNight||occupied(stamp))return;
+  selectionError='';
+  const bundle=offers.find(offer=>offer.packagePrice&&stamp>=offer.a&&stamp<=offer.b);
+  if(bundle&&(start===null||end!==null)){
+    for(let night=bundle.a;night<=bundle.b;night+=day){
+      if(night<minimum||occupied(night)){
+        start=null;end=null;selectionError='Esse pacote está indisponível.';renderCalendar(stamp);return;
+      }
+    }
+    start=bundle.a;end=bundle.b;renderCalendar(stamp);return;
+  }
+  if(start!==null&&end===null){
+    for(let night=Math.min(start,stamp);night<=Math.max(start,stamp);night+=day){
+      if(occupied(night)){
+        selectionError='Esse intervalo inclui uma noite indisponível. Escolha outro.';
+        renderCalendar(stamp);
+        return;
+      }
+    }
+  }
+  if(start === null || end !== null){start = stamp;end = null;}
+  else if(stamp === start){start = null;}
+  else {end = Math.max(start,stamp);start = Math.min(start,stamp);}
+  renderCalendar(stamp);
+}
+function renderCalendar(focusStamp){
+  const first = dateAt(year,month,1);
+  $('month').textContent = monthFormat.format(first);
+  $('prevMonth').disabled = dateAt(year,month+1,1) - day <= minimum;
+  $('nextMonth').disabled = dateAt(year,month+1,1)>lastNight;
+  grid.replaceChildren();
+  for(const name of ['Dom','Seg','Ter','Qua','Qui','Sex','Sáb']){
+    const label = document.createElement('span');
+    label.className = 'weekday'; label.textContent = name; grid.append(label);
+  }
+  for(let i=0;i<new Date(first).getUTCDay();i++)grid.append(document.createElement('span'));
+  for(let stamp=first;stamp<dateAt(year,month+1,1);stamp+=day){
+    const button = document.createElement('button');
+    button.type='button'; button.className='day'; button.disabled=stamp<minimum||stamp>lastNight||occupied(stamp);
+    if(occupied(stamp))button.classList.add('blocked');
+    button.textContent=new Date(stamp).getUTCDate();
+    button.setAttribute('aria-label',dateFormat.format(stamp)+(occupied(stamp)?' — indisponível':''));
+    button.setAttribute('aria-pressed',String(start!==null&&stamp>=start&&stamp<=(end??start)));
+    button.onclick=()=>selectNight(stamp);
+    grid.append(button);
+    if(stamp===focusStamp)button.focus();
+  }
+  const hostWhatsapp=$('hostWhatsapp');
+  hostWhatsapp.href='https://wa.me/554784911003';
+  whatsapp.hidden=start===null||!!selectionError;
+  if(selectionError){summary.textContent=selectionError;return;}
+  if(start===null){summary.textContent=minimum>lastNight?'Temporada encerrada.':'Toque em uma data para começar.';whatsapp.removeAttribute('href');return;}
+  const checkout=(end??start)+day;
+  const count=(checkout-start)/day;
+  const nights=count+(count===1?' noite':' noites');
+  const arrivalText=dateFormat.format(start), departureText=dateFormat.format(checkout);
+  const quote=quoteStay(start,checkout-day);
+  summary.textContent=nights+' · Entrada '+arrivalText+' · Saída '+departureText;
+  if(quote.error){summary.textContent+=' · '+quote.error;whatsapp.hidden=true;whatsapp.removeAttribute('href');return;}
+  summary.textContent+=' · '+currency.format(quote.total)+' em hospedagem';
+
+  const message='Olá, Dwight Anne! Gostaria de consultar a disponibilidade do apartamento da Rua Miguel Matte, 130, em Balneário Camboriú.\nEntrada: '+arrivalText+'\nSaída: '+departureText+'\n'+nights+'.';
+  whatsapp.href='https://wa.me/554784911003?text='+encodeURIComponent(message+String.fromCharCode(10)+'Hospedagem: '+currency.format(quote.total)+'.');
+  hostWhatsapp.href=whatsapp.href;
+}
+function changeMonth(offset){
+  const target=new Date(dateAt(year,month+offset,1));
+  year=target.getUTCFullYear();month=target.getUTCMonth();renderCalendar();
+}
+$('clearNights').onclick=()=>{start=null;end=null;selectionError='';renderCalendar();};
+$('prevMonth').onclick=()=>changeMonth(-1);
+$('nextMonth').onclick=()=>changeMonth(1);
+renderCalendar();
+$('mapButton').onclick=()=>{
+  const frame=$('mapFrame');
+  if(!frame.hasAttribute('src'))frame.src=frame.dataset.src;
+  showRouteAnimation(false);
+  $('maps').showModal();
+};
+show(0);
+</script>
+</html>
