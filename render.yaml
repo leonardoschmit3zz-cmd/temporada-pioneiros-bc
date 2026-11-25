@@ -1,0 +1,6 @@
+services:
+  - type: web
+    name: temporada-pioneiros-bc
+    runtime: static
+    buildCommand: node build.mjs
+    staticPublishPath: ./dist
