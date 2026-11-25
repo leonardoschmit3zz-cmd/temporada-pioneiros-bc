@@ -71,6 +71,14 @@
 #dates .combo-label[hidden]{display:none}
 @keyframes comboChange{from{opacity:.45;transform:translateY(4px) scale(.96)}to{opacity:1;transform:none}}
 @media(prefers-reduced-motion:no-preference){#dates .combo-label.changed{animation:comboChange .34s ease-out}}
+
+@keyframes tourBoomerang{0%,100%{scale:1}50%{scale:1.045}}
+@media(prefers-reduced-motion:no-preference){
+  #photo:not([hidden]){animation:tourBoomerang 5.6s ease-in-out infinite}
+  .shot.is-transitioning #photo{animation:none}
+  .shot.motion-paused #photo{animation-play-state:paused}
+}
+#togglePhotoMotion[hidden]{display:none}
 </style>
 </head>
 <body>
@@ -82,7 +90,7 @@
 <button id="point"></button></div><div class="shade"></div>
 </div>
 <header class="head"><div><h1>Apartamento por temporada em Balneário Camboriú</h1><p>Balneário Camboriú · Rua Miguel Matte, 130</p><p class="season">Temporada de 26/12 a 09/02 · Consulte suas noites</p></div><div><button id="mapButton" type="button">Ver localização</button> <button id="datesButton">Escolher noites</button></div></header>
-<footer class="foot"><div><h2 id="name" aria-live="polite"></h2><p id="detail"></p><button id="play" hidden>Reproduzir vídeo</button></div><nav id="nav" aria-label="Pontos da visita"></nav></footer>
+<footer class="foot"><div><h2 id="name" aria-live="polite"></h2><p id="detail"></p><button id="play" hidden>Reproduzir vídeo</button> <button id="togglePhotoMotion" type="button" aria-pressed="false" hidden>Pausar movimento</button></div><nav id="nav" aria-label="Pontos da visita"></nav></footer>
 </main>
 <section style="max-width:760px;margin:auto;padding:24px"><h2>Temporada em Pioneiros</h2>
 <p>Apartamento para até 4 hóspedes, com cama king no quarto, sofá retrátil e cama compacta na sala, vista da janela e uma vaga rotativa por estadia. Endereço: Rua Miguel Matte, 130, Balneário Camboriú.</p>
@@ -135,6 +143,16 @@ const scenes = [
 const photo=$('photo'),video=$('video'),point=$('point'),dates=$('dates');
 const motion=matchMedia('(prefers-reduced-motion: reduce)');
 let active=0,moving=false;
+const shot=$('shot'), togglePhotoMotion=$('togglePhotoMotion');
+function updatePhotoMotion(){
+  togglePhotoMotion.hidden=motion.matches||photo.hidden||!video.hidden;
+}
+togglePhotoMotion.onclick=()=>{
+  const paused=shot.classList.toggle('motion-paused');
+  togglePhotoMotion.textContent=paused?'Retomar movimento':'Pausar movimento';
+  togglePhotoMotion.setAttribute('aria-pressed',String(paused));
+};
+motion.addEventListener('change',updatePhotoMotion);
 const tabs=scenes.map((scene,index)=>{
   const tab=document.createElement('button');
   tab.textContent=index===1?'Porta':scene.name;
@@ -153,6 +171,7 @@ function show(index){
   $('detail').textContent=scene.detail||'';
   $('play').hidden=!scene.clip||!media[scene.clip+'Video'];
   $('play').textContent='Reproduzir vídeo';
+  updatePhotoMotion();
   point.hidden=!src;
   point.style.left=scene.point[0]+'%';
   point.style.top=scene.point[1]+'%';
@@ -164,6 +183,7 @@ async function go(index){
   const from=scenes[active],to=scenes[index];
   if(motion.matches||!photo.animate||photo.hidden||!video.hidden){show(index);return;}
   moving=true;
+  shot.classList.add('is-transitioning');
   point.hidden=true;
   const origin=from.point[0]+'% '+from.point[1]+'%';
   await photo.animate([{transform:'scale(1)',transformOrigin:origin},{transform:'scale('+(active===0&&index===1?2.75:1.4)+')',transformOrigin:origin,opacity:0}],{duration:620,easing:'cubic-bezier(.38,0,.24,1)',fill:'forwards'}).finished.catch(()=>{});
@@ -176,12 +196,14 @@ async function go(index){
   }
   point.hidden=photo.hidden;
   moving=false;
+  shot.classList.remove('is-transitioning');
 }
 point.onclick=()=>scenes[active].next===undefined?openDates():go(scenes[active].next);
 $('play').onclick=()=>{
   if(!video.hidden){show(active);return;}
   video.src=media[scenes[active].clip+'Video'];
   video.hidden=false;video.controls=true;photo.hidden=true;point.hidden=true;
+  updatePhotoMotion();
   $('play').textContent='Voltar à foto';
   video.play().catch(()=>{});
 };
