@@ -110,6 +110,39 @@
  #introPanel{z-index:5;right:auto;bottom:auto;top:50%;left:clamp(22px,3vw,65px);transform:translateY(-50%);width:min(420px,calc(50vw - 28.125dvh - clamp(22px,3vw,65px) - 20px))}
  #introOpen{right:auto;bottom:auto;top:50%;left:clamp(22px,3vw,65px)}
 }
+:root{color-scheme:dark;--paper:#f9f1e4;--gold:#eac78d;--line:#f8deac38;--ink:#121b23}
+body{background:#101820;color:var(--paper);font-family:system-ui,sans-serif}
+.tour{isolation:isolate;background:#111a23}
+.head,.foot{z-index:4}
+.head h1{font-size:clamp(1.5rem,3vw,2.9rem);line-height:1.06;max-width:22ch;letter-spacing:-.035em}
+.head p{color:#f7e6d0}
+.head .season{background:#16222bdc;color:#f7d9aa;border:1px solid var(--line);border-radius:12px;padding:6px 11px;font-size:.88rem}
+.head button,.foot button,#point{border-color:var(--line)}
+#datesButton,#point{background:var(--gold);color:#152029}
+#dates,#introPanel,#maps{background:#17232df5;border:1px solid var(--line);box-shadow:0 22px 85px #06101875}
+#introPanel header strong{color:var(--gold);font-size:.83rem;letter-spacing:.09em;text-transform:uppercase}
+#introVisual{border:1px solid var(--line);border-radius:12px}
+#introTitle{font-family:Georgia,serif;font-size:clamp(1.15rem,2vw,1.48rem);line-height:1.12}
+#introCaption{color:#e9e2d9}
+#introSound,#introPlay,#introMap,#introClose,#introMin{background:#111e28;border-color:var(--line)}
+#introSound{background:var(--gold);color:#141f27}
+#introClip.is-cgi{object-fit:contain;background:#0d1720}
+#introOpen{background:var(--gold);color:#14202b}
+#dates h1{font-family:Georgia,serif;font-weight:normal}
+#dates .host{border-color:var(--line)}
+#dates .day[aria-pressed=true],#dates .combo-label,#dates #whatsapp{background:var(--gold);color:#111b23}
+.booking-facts{max-width:860px;margin:auto;padding:30px clamp(18px,5vw,44px) 42px;color:var(--paper)}
+.booking-facts h2{font-family:Georgia,serif;font-weight:normal;font-size:clamp(1.45rem,3vw,2.15rem);margin:0 0 13px}
+.booking-facts p{line-height:1.65;color:#e4d8c8}
+@media(min-width:1360px) and (min-aspect-ratio:3/2){
+ #introPanel,#dates[open]{border-radius:22px;padding:16px;max-height:calc(100dvh - 170px);overflow:auto}
+ #introVisual{height:clamp(130px,22dvh,245px)}
+ .shot{border-inline:1px solid #f2c99240;box-shadow:0 0 95px #0c171aaf}
+}
+@media(max-width:560px){
+ #introPanel{bottom:max(10px,env(safe-area-inset-bottom));max-height:60dvh;overflow:auto}
+ #introPanel button{font-size:.79rem}
+}
 </style>
 </head>
 <body>
@@ -123,11 +156,11 @@
 <header class="head"><div><h1>Apartamento por temporada em Balneário Camboriú</h1><p>Balneário Camboriú · Rua Miguel Matte, 130</p><p class="season">Temporada de 26/12 a 09/02 · Consulte suas noites</p></div><div><button id="mapButton" type="button">Ver localização</button> <button id="datesButton">Escolher noites</button></div></header>
 <footer class="foot"><div><h2 id="name" aria-live="polite"></h2><p id="detail"></p><button id="play" hidden>Reproduzir vídeo</button> <button id="togglePhotoMotion" type="button" aria-pressed="false" hidden>Pausar movimento</button></div><nav id="nav" aria-label="Pontos da visita"></nav></footer>
 </main>
-<section style="max-width:760px;margin:auto;padding:24px"><h2>Temporada em Pioneiros</h2>
+<section class="booking-facts"><h2>Temporada em Pioneiros</h2>
 <p>Apartamento para até 4 hóspedes, com cama king no quarto, sofá retrátil e cama compacta na sala, vista da janela e uma vaga rotativa por estadia. Endereço: Rua Miguel Matte, 130, Balneário Camboriú.</p>
 <p>Réveillon de 29/12/2026 a 03/01/2027: R$ 8.490 por 5 noites. Carnaval de 05 a 10/02/2027: R$ 3.500 por 5 noites. Selecione as suas datas para consultar o preço de hospedagem.</p></section>
 <aside id="introPanel" aria-label="Apresentação de um minuto">
-<header><strong>Trajeto e fogos · 1 min</strong><button id="introMin" type="button" aria-label="Minimizar apresentação">Minimizar</button><button id="introClose" type="button" aria-label="Fechar apresentação">✕</button></header>
+<header><strong>Guia da Barra Norte · 1 min</strong><button id="introMin" type="button" aria-label="Minimizar apresentação">Minimizar</button><button id="introClose" type="button" aria-label="Fechar apresentação">✕</button></header>
 <div id="introVisual"><img id="introPhoto" alt="" hidden><video id="introClip" playsinline muted loop hidden></video><div id="introArt"></div></div>
 <strong id="introTitle"></strong><p id="introCaption"></p>
 <progress id="introProgress" value="0" max="60" aria-label="Progresso da apresentação"></progress>
