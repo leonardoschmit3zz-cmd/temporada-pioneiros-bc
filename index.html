@@ -186,8 +186,8 @@ body{background:#101820;color:var(--paper);font-family:system-ui,sans-serif}
 <aside id="introPanel" aria-label="Maquete 3D da Barra Norte" hidden>
 <header><strong>Um dia na Barra Norte</strong><button id="introMin" type="button">Recolher</button></header>
 <div id="introVisual"><div id="modelMount"></div></div>
-<p id="modelHelp">Veja a Barra Norte do amanhecer ao Réveillon em 25 segundos.</p>
-<div class="introActions"><a href="maquete.html" target="_blank" rel="noopener">Abrir em tela cheia</a><button id="introMap" type="button">Ver mapa</button><button id="openLocalViews" type="button">Vistas do entorno</button></div>
+<p id="modelHelp">Explore a orla, o molhe e a Prainha. Arraste para girar a vista.</p>
+<div class="introActions"><a href="maquete.html?v=orla-3d" target="_blank" rel="noopener">Abrir em tela cheia</a><button id="introMap" type="button">Ver mapa</button><button id="openLocalViews" type="button">Vistas do entorno</button></div>
 </aside>
 <button id="introOpen" type="button" aria-controls="introPanel" aria-expanded="false">Abrir maquete 3D</button>
 <dialog id="maps" aria-labelledby="mapTitle">
@@ -478,7 +478,7 @@ function showModel(open){
   if(open&&!mount.firstElementChild){
     const frame=document.createElement('iframe');
     frame.title='Maquete 3D interativa da Barra Norte';
-    frame.src='maquete.html?embed=1';
+    frame.src='maquete.html?embed=1&v=orla-3d';
     frame.allowFullscreen=true;
     mount.append(frame);
   }
