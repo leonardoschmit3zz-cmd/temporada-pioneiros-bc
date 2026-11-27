@@ -34,3 +34,8 @@ await writeFile('dist/sitemap.xml', '<?xml version="1.0" encoding="UTF-8"?>\n<ur
 
 const photoTourRedirect = '<!doctype html><html lang="pt-BR"><meta charset="utf-8"><meta http-equiv="refresh" content="0;url=/"><title>Visita fotográfica</title><a href="/">Abrir a visita fotográfica</a></html>';
 for (const path of ['maquete.html', 'rua-miguel-matte.html']) await writeFile('dist/' + path, photoTourRedirect);
+
+const miranteParts = await Promise.all([0, 1, 2, 3].map(index => readFile('mirante-cgi-' + index + '.txt', 'utf8')));
+const mirante = Buffer.from(miranteParts.map(part => part.trim()).join(''), 'base64');
+if (mirante.subarray(0, 8).toString('hex') !== '89504e470d0a1a0a') throw new Error('Imagem do mirante inválida');
+await writeFile('dist/media/mirante-cgi.png', mirante);
