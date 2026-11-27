@@ -147,6 +147,20 @@ body{background:#101820;color:var(--paper);font-family:system-ui,sans-serif}
 @keyframes nearbySlide{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:none}}
 @keyframes nearbyLight{to{transform:translate(9%,5%) scale(1.13)}}
 @media(prefers-reduced-motion:reduce){#nearby article:not([hidden]),#nearby[data-play="on"] .nearby-light{animation:none}}
+.tour{background:#132632 url("media/mirante-cgi.png") center 53%/cover no-repeat}
+.tour .backdrop{opacity:.12}
+.tour .shade{background:linear-gradient(90deg,#0b1928a8 0%,transparent 37%,transparent 62%,#0b1928a8 100%),linear-gradient(#121318c7,transparent 27%,transparent 64%,#121318df)}
+#welcomePhoto{display:block;object-fit:cover}
+#welcomePhoto.welcome-enter{animation:welcomeEnter 1.7s ease-out both}
+#welcomePhoto.welcome-wide{object-fit:contain;background:#101923}
+@keyframes welcomeEnter{from{transform:scale(1);opacity:.78}to{transform:scale(1.04);opacity:1}}
+#welcomeSound{font-size:.78rem}
+#walkMotion{width:100%;height:clamp(50px,7dvh,78px);display:block;margin:3px 0}
+.walk-leg{transform-box:fill-box;transform-origin:top center;animation:walkStep .44s ease-in-out infinite alternate}
+.walk-leg.reverse{animation-direction:alternate-reverse}
+#nearby[data-play="off"] .walk-leg{animation-play-state:paused}
+@keyframes walkStep{from{transform:rotate(-15deg)}to{transform:rotate(17deg)}}
+@media(prefers-reduced-motion:reduce){#welcomePhoto.welcome-enter,.walk-leg{animation:none}}
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Apartment","name":"Apartamento por temporada em Pioneiros, Balneário Camboriú","description":"Apartamento para até 4 hóspedes com cama king e uma vaga rotativa, na região da Barra Norte.","numberOfBedrooms":1,"occupancy":{"@type":"QuantitativeValue","maxValue":4},"image":["media/quartoPhoto.webp","media/vistaPhoto.webp"],"address":{"@type":"PostalAddress","streetAddress":"Rua Miguel Matte, 130","addressLocality":"Balneário Camboriú","addressRegion":"SC","addressCountry":"BR"}}</script>
 </head>
@@ -163,7 +177,10 @@ body{background:#101820;color:var(--paper);font-family:system-ui,sans-serif}
 </main>
 <section id="nearby" aria-label="Localização e comodidades">
 <div class="nearby-light" aria-hidden="true"></div>
-<div class="nearby-cards"><article><p class="nearby-tag">Orla</p><h2>Praia Central a pé</h2><p>Caminhe do Edifício Mar Azul até a orla da Barra Norte.</p><a href="https://www.google.com/maps/dir/?api=1&amp;origin=Rua%20Miguel%20Matte%2C%20130%2C%20Balne%C3%A1rio%20Cambori%C3%BA%2C%20SC&amp;destination=Avenida%20Atl%C3%A2ntica%2C%20Pontal%20Norte%2C%20Balne%C3%A1rio%20Cambori%C3%BA&amp;travelmode=walking" target="_blank" rel="noopener noreferrer">Ver distância e tempo</a></article><article hidden><p class="nearby-tag">Barra Norte</p><h2>Roda-gigante</h2><p>A FG Big Wheel fica na Estrada da Rainha, perto do Pontal Norte.</p><a href="https://www.google.com/maps/dir/?api=1&amp;origin=Rua%20Miguel%20Matte%2C%20130%2C%20Balne%C3%A1rio%20Cambori%C3%BA%2C%20SC&amp;destination=FG%20Big%20Wheel%2C%20Balne%C3%A1rio%20Cambori%C3%BA&amp;travelmode=walking" target="_blank" rel="noopener noreferrer">Ver rota a pé</a></article><article hidden><p class="nearby-tag">Comércio</p><h2>Mercados e cafés</h2><p>Veja mercados, padarias e cafés no entorno da Rua Miguel Matte.</p><a href="https://www.google.com/maps/search/?api=1&amp;query=mercados%20e%20padarias%20perto%20de%20Rua%20Miguel%20Matte%20130%2C%20Pioneiros%2C%20Balne%C3%A1rio%20Cambori%C3%BA" target="_blank" rel="noopener noreferrer">Ver comércio no mapa</a></article><article hidden><p class="nearby-tag">Passeios</p><h2>Deck e Prainha</h2><p>O deck costeiro do Pontal Norte dá acesso à Praia do Canto.</p><a href="https://www.google.com/maps/dir/?api=1&amp;origin=Rua%20Miguel%20Matte%2C%20130%2C%20Balne%C3%A1rio%20Cambori%C3%BA%2C%20SC&amp;destination=Deck%20do%20Pontal%20Norte%2C%20Balne%C3%A1rio%20Cambori%C3%BA&amp;travelmode=walking" target="_blank" rel="noopener noreferrer">Ver o deck no mapa</a></article><article hidden><p class="nearby-tag">Edifício Mar Azul</p><h2>Uma vaga rotativa</h2><p>Uma vaga de garagem por estadia, com acessos pela Rua Miguel Matte.</p><a href="#garagem">Ver foto da garagem</a></article><article hidden><p class="nearby-tag">Apartamento</p><h2>Até 4 hóspedes</h2><p>Cama king no quarto, sofá retrátil e cama compacta na sala.</p><a href="#cama">Ver foto do quarto</a></article><article hidden><p class="nearby-tag">Temporada</p><h2>Réveillon na Barra Norte</h2><p>Consulte o pacote de cinco noites no calendário.</p><a href="#datas">Consultar datas</a></article></div>
+<div class="nearby-cards"><article><p class="nearby-tag">Orla</p><h2>2 a 5 minutos a pé</h2><p>Do Mar Azul à Praia Central · tempo estimado</p><svg id="walkMotion" viewBox="0 0 360 78" role="img" aria-label="Ilustração de uma pessoa caminhando do prédio até a praia">
+<path d="M43 55 C103 55 109 32 167 41 S239 61 299 39" fill="none" stroke="#e4c78e" stroke-width="2" stroke-dasharray="5 6"/>
+<g fill="none" stroke="#c1d5de" stroke-width="2" stroke-linejoin="round"><path d="M8 54V18h29v36M5 54h35M15 25h4m7 0h4m-15 8h4m7 0h4m-15 8h4m7 0h4"/><path d="M318 52V30m-13 0q13-20 26 0zm-18 29q8-7 16 0t16 0t16 0"/></g>
+<g class="walk-actor" fill="none" stroke="#ffe199" stroke-width="2.8" stroke-linecap="round"><circle cx="0" cy="-18" r="3" fill="#ffe199"/><path d="M0-14v8m-5-3 5-4 5 2"/><path class="walk-leg" d="M0-6l5 7"/><path class="walk-leg reverse" d="M0-6l-5 7"/><animateMotion dur="4.5s" repeatCount="indefinite" keyPoints="0;1;1" keyTimes="0;.88;1" calcMode="linear" path="M43 55 C103 55 109 32 167 41 S239 61 299 39"/></g></svg><a href="https://www.google.com/maps/dir/?api=1&amp;origin=Rua%20Miguel%20Matte%2C%20130%2C%20Balne%C3%A1rio%20Cambori%C3%BA%2C%20SC&amp;destination=Avenida%20Atl%C3%A2ntica%2C%20Pontal%20Norte%2C%20Balne%C3%A1rio%20Cambori%C3%BA&amp;travelmode=walking" target="_blank" rel="noopener noreferrer">Ver distância e tempo</a></article><article hidden><p class="nearby-tag">Barra Norte</p><h2>Roda-gigante</h2><p>A FG Big Wheel fica na Estrada da Rainha, perto do Pontal Norte.</p><a href="https://www.google.com/maps/dir/?api=1&amp;origin=Rua%20Miguel%20Matte%2C%20130%2C%20Balne%C3%A1rio%20Cambori%C3%BA%2C%20SC&amp;destination=FG%20Big%20Wheel%2C%20Balne%C3%A1rio%20Cambori%C3%BA&amp;travelmode=walking" target="_blank" rel="noopener noreferrer">Ver rota a pé</a></article><article hidden><p class="nearby-tag">Comércio</p><h2>Mercados e cafés</h2><p>Veja mercados, padarias e cafés no entorno da Rua Miguel Matte.</p><a href="https://www.google.com/maps/search/?api=1&amp;query=mercados%20e%20padarias%20perto%20de%20Rua%20Miguel%20Matte%20130%2C%20Pioneiros%2C%20Balne%C3%A1rio%20Cambori%C3%BA" target="_blank" rel="noopener noreferrer">Ver comércio no mapa</a></article><article hidden><p class="nearby-tag">Passeios</p><h2>Deck e Prainha</h2><p>O deck costeiro do Pontal Norte dá acesso à Praia do Canto.</p><a href="https://www.google.com/maps/dir/?api=1&amp;origin=Rua%20Miguel%20Matte%2C%20130%2C%20Balne%C3%A1rio%20Cambori%C3%BA%2C%20SC&amp;destination=Deck%20do%20Pontal%20Norte%2C%20Balne%C3%A1rio%20Cambori%C3%BA&amp;travelmode=walking" target="_blank" rel="noopener noreferrer">Ver o deck no mapa</a></article><article hidden><p class="nearby-tag">Edifício Mar Azul</p><h2>Uma vaga rotativa</h2><p>Uma vaga de garagem por estadia, com acessos pela Rua Miguel Matte.</p><a href="#garagem">Ver foto da garagem</a></article><article hidden><p class="nearby-tag">Apartamento</p><h2>Até 4 hóspedes</h2><p>Cama king no quarto, sofá retrátil e cama compacta na sala.</p><a href="#cama">Ver foto do quarto</a></article><article hidden><p class="nearby-tag">Temporada</p><h2>Réveillon na Barra Norte</h2><p>Consulte o pacote de cinco noites no calendário.</p><a href="#datas">Consultar datas</a></article></div>
 <div class="nearby-controls"><button id="nearbyPrev" type="button" aria-label="Destaque anterior">‹</button><span id="nearbyCount" aria-hidden="true">1 / 7</span><button id="nearbyNext" type="button" aria-label="Próximo destaque">›</button><button id="nearbyPause" type="button">Pausar</button></div>
 </section>
 <section class="booking-facts"><h2>Temporada em Pioneiros</h2>
@@ -190,9 +207,9 @@ body{background:#101820;color:var(--paper);font-family:system-ui,sans-serif}
 <div class="actions"><a id="whatsapp" target="_blank" rel="noopener noreferrer" hidden>Enviar datas no WhatsApp</a><button id="clearNights" type="button">Limpar</button><button id="closeDates" type="button">Voltar</button></div>
 </dialog>
 <dialog id="welcome" aria-labelledby="welcomeTitle">
-<header><strong id="welcomeTitle">Simulação de reserva</strong><button id="welcomeSkip" type="button">Pular</button></header>
+<header><strong id="welcomeTitle">Simulação de reserva</strong><button id="welcomeSound" type="button" aria-pressed="false">Ativar narração</button><button id="welcomeSkip" type="button">Pular</button></header>
 <div id="welcomeStage">
-<section data-demo="0"><img id="welcomePhoto" alt="Foto real do apartamento"><h2>Veja o apartamento</h2></section>
+<section data-demo="0"><img id="welcomePhoto" alt="Foto real do apartamento"><h2 id="welcomeShotTitle">Chegada ao Mar Azul</h2></section>
 <section data-demo="1" hidden><h2>Escolha as noites</h2><p>Exemplo de 3 noites em janeiro</p><div id="welcomeDateRow" aria-label="Dias do exemplo"><span>18</span><span>19</span><span>20</span><span>21</span><span>22</span></div></section>
 <section data-demo="2" hidden><h2>Fale com a anfitriã</h2><div id="welcomeChat"><p>Oi! Tem essas noites disponíveis?</p><p hidden>Oi! Vou conferir suas datas.</p><p hidden>Na simulação, sua reserva foi confirmada.</p></div></section>
 <section data-demo="3" id="welcomeEnd" hidden><canvas id="welcomeFire" aria-hidden="true"></canvas><span id="bookingFlag" aria-hidden="true">⚑</span><h2>Apartamento locado!</h2><p>Conquista desbloqueada na simulação.</p></section>
@@ -423,7 +440,41 @@ show(0);
  const panels=[...welcome.querySelectorAll('[data-demo]')], datesDemo=[...$('welcomeDateRow').children],
        bubbles=[...$('welcomeChat').children], img=$('welcomePhoto');
  const labels=['Simular agendamento','Conversar com a anfitriã','Concluir simulação','Alugar agora'];
- let step=0,timers=[],animation=0;
+ let step=0,timers=[],animation=0,voiceEnabled=true;
+ const audioButton=$('welcomeSound'), speech=window.speechSynthesis;
+ const lines=[
+   'Bem-vindo ao Edifício Mar Azul, em Balneário Camboriú. Entre comigo, conheça o quarto e veja a vista da janela.',
+   'Escolha as noites que combinam com a sua viagem.',
+   'Envie as datas para a anfitriã conferir a disponibilidade. Esta conversa é uma simulação.',
+   'Simulação concluída. Toque em alugar agora para consultar as datas reais.'
+ ];
+ let utterance=null,voiceStarted=false;
+ function speak(){
+   if(!speech||!voiceEnabled)return;
+   speech.cancel();
+   voiceStarted=false;
+   const u=utterance=new SpeechSynthesisUtterance(lines[step]);
+   u.lang='pt-BR';u.rate=1.02;
+   const voice=speech.getVoices().find(v=>v.lang.toLowerCase()==='pt-br');
+   if(voice)u.voice=voice;
+   u.onstart=()=>{if(u!==utterance)return;voiceStarted=true;audioButton.textContent='Silenciar';audioButton.setAttribute('aria-pressed','true');};
+   u.onerror=()=>{if(u!==utterance)return;voiceStarted=false;audioButton.textContent='Ativar narração';audioButton.setAttribute('aria-pressed','false');};
+   speech.speak(u);
+ }
+ audioButton.hidden=!speech;
+ audioButton.onclick=()=>{
+   if(voiceEnabled&&voiceStarted){voiceEnabled=false;utterance=null;speech.cancel();voiceStarted=false;audioButton.textContent='Ativar narração';audioButton.setAttribute('aria-pressed','false');}
+   else{voiceEnabled=true;speak();}
+ };
+ function shot(src,title,wide=false){
+   if(!src)return;
+   img.src=src;img.alt=title;
+   $('welcomeShotTitle').textContent=title;
+   img.classList.toggle('welcome-wide',wide);
+   img.classList.remove('welcome-enter');
+   if(!reduced){void img.offsetWidth;img.classList.add('welcome-enter');}
+ }
+
  function clear(){timers.forEach(clearTimeout);timers=[];cancelAnimationFrame(animation);}
  function runAfter(delay,action){if(!reduced)timers.push(setTimeout(action,delay));}
  function fireworks(){
@@ -457,24 +508,29 @@ show(0);
    panels.forEach((panel,i)=>{panel.hidden=i!==index;});
    $('welcomeCount').textContent='Etapa '+(index+1)+' de 4';
    next.textContent=labels[index];
+   speak();
    if(index===0){
-     img.src=media.camaPhoto;
-     runAfter(1050,()=>{img.src=media.banheiroPhoto;img.alt='Foto real do banheiro';});
-     runAfter(2100,()=>{img.src=media.vistaPhoto;img.alt='Vista real da janela';});
-     runAfter(3250,()=>show(1));
+     const facade="";
+     const photos=[...(facade?[[facade,'Fachada do Edifício Mar Azul',true]]:[]),
+       [media.hallPhoto,'Entrada do prédio',true],[media.entradaPhoto,'Corredor'],
+       [media.portaPhoto,'Porta do apartamento'],[media.camaPhoto,'Quarto com cama king'],
+       [media.vistaPhoto,'Vista da janela']];
+     shot(...photos[0]);
+     photos.slice(1).forEach((entry,i)=>runAfter((i+1)*1700,()=>shot(...entry)));
+     runAfter(Math.max(7800,photos.length*1700),()=>show(1));
    }else if(index===1){
      datesDemo.forEach((date,i)=>date.classList.toggle('picked',reduced&&i<3));
      for(let i=0;i<3;i++)runAfter(400+i*330,()=>datesDemo[i].classList.add('picked'));
-     runAfter(2200,()=>show(2));
+     runAfter(3400,()=>show(2));
    }else if(index===2){
      bubbles.forEach((bubble,i)=>{bubble.hidden=!reduced&&i>0;});
      runAfter(900,()=>{bubbles[1].hidden=false;});
      runAfter(2000,()=>{bubbles[2].hidden=false;});
-     runAfter(3250,()=>show(3));
+     runAfter(6500,()=>show(3));
    }else if(!reduced){fireworks();}
  }
  function finish(openBooking){
-   clear();
+   clear();utterance=null;if(speech)speech.cancel();
    try {sessionStorage.setItem('bookingDemoSeen','1');} catch {}
    welcome.close();
    if(openBooking)openDates();else {layoutDates();$('datesButton').focus({preventScroll:true});}
@@ -504,6 +560,7 @@ show(0);
    const active=playing&&visible&&!focused&&!hovered&&!document.hidden;
    panel.dataset.play=active?'on':'off';
    pause.textContent=playing?'Pausar':'Reproduzir';
+   const walk=$('walkMotion');if(walk?.pauseAnimations){if(active&&current===0)walk.unpauseAnimations();else walk.pauseAnimations();}
    if(active)timer=setInterval(()=>render(current+1),4800);
  }
  for(const [key,dir] of [['nearbyPrev',-1],['nearbyNext',1]]){
