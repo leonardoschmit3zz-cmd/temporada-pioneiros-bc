@@ -4,14 +4,20 @@ const address = new URL(process.env.SITE_URL || process.env.RENDER_EXTERNAL_URL 
 if (!['https:', 'http:'].includes(address.protocol)) throw new Error('Invalid site URL');
 const canonical = new URL('/', address).href;
 const escape = value => value.replaceAll('&', '&amp;').replaceAll('"', '&quot;').replaceAll('<', '&lt;');
-const page = await readFile('index.html', 'utf8');
+const source = await readFile('index.html', 'utf8');
+const page = source.replace(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/, (_, raw) => {
+  const apartment = JSON.parse(raw);
+  apartment.url = canonical;
+  apartment.image = apartment.image.map(path => new URL(path, canonical).href);
+  return '<script type="application/ld+json">' + JSON.stringify(apartment).replaceAll('<', '\\u003c') + '</script>';
+});
 const seo = [
   `<link rel="canonical" href="${escape(canonical)}">`,
   '<meta property="og:type" content="website">',
   '<meta property="og:locale" content="pt_BR">',
   `<meta property="og:url" content="${escape(canonical)}">`,
   '<meta property="og:title" content="Apartamento por temporada em Balneário Camboriú | Pioneiros">',
-  '<meta property="og:description" content="Veja as fotos reais do apartamento, consulte as noites e fale com a anfitriã. Até 4 hóspedes e uma vaga rotativa.">',
+  '<meta property="og:description" content="Veja as fotos reais do apartamento em Pioneiros, perto da Praia Central e da roda-gigante. Consulte suas datas e preços.">',
   `<meta property="og:image" content="${escape(new URL('media/vistaPhoto.webp',canonical).href)}">`,
   '<meta name="twitter:card" content="summary_large_image">',
 ].join('\n');
