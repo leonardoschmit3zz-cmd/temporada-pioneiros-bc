@@ -126,6 +126,27 @@ body{background:#101820;color:var(--paper);font-family:system-ui,sans-serif}
 #welcome footer{flex-wrap:wrap}#welcomeNext{background:#eac78d;color:#14212b;border-color:#eac78d}
 #welcomeCount{font-size:.78rem;color:#e5d5bd}
 @media(prefers-reduced-motion:reduce){#bookingFlag{animation:none!important}}
+
+#nearby{position:relative;isolation:isolate;overflow:hidden;width:min(520px,calc(100% - 28px));margin:20px auto 0;padding:17px 18px 13px;background:#14212aec;border:1px solid #ead0a33e;border-radius:19px;box-shadow:0 14px 34px #0a0a0a30;color:#fff4e2}
+#nearby .nearby-light{position:absolute;inset:-45%;z-index:-1;background:radial-gradient(ellipse at 26% 24%,#f6ce8d38,transparent 32%),radial-gradient(ellipse at 67% 78%,#4d92a338,transparent 31%);pointer-events:none}
+#nearby[data-play="on"] .nearby-light{animation:nearbyLight 11s ease-in-out infinite alternate}
+#nearby .nearby-cards{min-height:132px}
+#nearby article[hidden]{display:none}#nearby article:not([hidden]){animation:nearbySlide .45s ease-out both}
+#nearby .nearby-tag{color:#edca93;font-weight:650;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;margin:0 0 6px}
+#nearby h2{font-size:clamp(1.45rem,2.15vw,2.2rem);line-height:1.06}
+#nearby p{margin:7px 0;font-size:.88rem;line-height:1.35}
+#nearby a{font-size:.84rem;color:#ffe2af;text-underline-offset:3px}
+#nearby .nearby-controls{display:flex;gap:6px;align-items:center;margin-top:13px}
+#nearby .nearby-controls button{min-width:34px;min-height:34px;padding:4px 9px;font-size:.8rem}
+#nearbyCount{min-width:38px;text-align:center;color:#ead7b9;font-size:.77rem}
+#nearbyPause{margin-left:auto}
+@media(min-width:1360px) and (min-aspect-ratio:3/2) and (min-height:680px){
+ #nearby{position:absolute;z-index:5;left:clamp(14px,4vw,54px);top:40dvh;margin:0;width:min(430px,calc(50vw - 28.125dvh - clamp(14px,4vw,54px) - 18px))}
+ .foot nav{max-width:min(39rem,calc(50vw - 5rem));position:relative;z-index:6}
+}
+@keyframes nearbySlide{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:none}}
+@keyframes nearbyLight{to{transform:translate(9%,5%) scale(1.13)}}
+@media(prefers-reduced-motion:reduce){#nearby article:not([hidden]),#nearby[data-play="on"] .nearby-light{animation:none}}
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Apartment","name":"Apartamento por temporada em Pioneiros, Balneário Camboriú","description":"Apartamento para até 4 hóspedes com cama king e uma vaga rotativa, na região da Barra Norte.","numberOfBedrooms":1,"occupancy":{"@type":"QuantitativeValue","maxValue":4},"image":["media/quartoPhoto.webp","media/vistaPhoto.webp"],"address":{"@type":"PostalAddress","streetAddress":"Rua Miguel Matte, 130","addressLocality":"Balneário Camboriú","addressRegion":"SC","addressCountry":"BR"}}</script>
 </head>
@@ -140,6 +161,11 @@ body{background:#101820;color:var(--paper);font-family:system-ui,sans-serif}
 <header class="head"><div><h1>Apartamento por temporada em Balneário Camboriú</h1><p>Balneário Camboriú · Rua Miguel Matte, 130</p><p class="season">Até 4 hóspedes · Cama king · 1 vaga rotativa</p></div><div><button id="mapButton" type="button">Ver localização</button> <button id="datesButton">Escolher noites</button></div></header>
 <footer class="foot"><div><h2 id="name" aria-live="polite"></h2><p id="detail"></p><button id="togglePhotoMotion" type="button" aria-pressed="false" hidden>Pausar movimento</button></div><nav id="nav" aria-label="Pontos da visita"></nav></footer>
 </main>
+<section id="nearby" aria-label="Localização e comodidades">
+<div class="nearby-light" aria-hidden="true"></div>
+<div class="nearby-cards"><article><p class="nearby-tag">Orla</p><h2>Praia Central a pé</h2><p>Caminhe do Edifício Mar Azul até a orla da Barra Norte.</p><a href="https://www.google.com/maps/dir/?api=1&amp;origin=Rua%20Miguel%20Matte%2C%20130%2C%20Balne%C3%A1rio%20Cambori%C3%BA%2C%20SC&amp;destination=Avenida%20Atl%C3%A2ntica%2C%20Pontal%20Norte%2C%20Balne%C3%A1rio%20Cambori%C3%BA&amp;travelmode=walking" target="_blank" rel="noopener noreferrer">Ver distância e tempo</a></article><article hidden><p class="nearby-tag">Barra Norte</p><h2>Roda-gigante</h2><p>A FG Big Wheel fica na Estrada da Rainha, perto do Pontal Norte.</p><a href="https://www.google.com/maps/dir/?api=1&amp;origin=Rua%20Miguel%20Matte%2C%20130%2C%20Balne%C3%A1rio%20Cambori%C3%BA%2C%20SC&amp;destination=FG%20Big%20Wheel%2C%20Balne%C3%A1rio%20Cambori%C3%BA&amp;travelmode=walking" target="_blank" rel="noopener noreferrer">Ver rota a pé</a></article><article hidden><p class="nearby-tag">Comércio</p><h2>Mercados e cafés</h2><p>Veja mercados, padarias e cafés no entorno da Rua Miguel Matte.</p><a href="https://www.google.com/maps/search/?api=1&amp;query=mercados%20e%20padarias%20perto%20de%20Rua%20Miguel%20Matte%20130%2C%20Pioneiros%2C%20Balne%C3%A1rio%20Cambori%C3%BA" target="_blank" rel="noopener noreferrer">Ver comércio no mapa</a></article><article hidden><p class="nearby-tag">Passeios</p><h2>Deck e Prainha</h2><p>O deck costeiro do Pontal Norte dá acesso à Praia do Canto.</p><a href="https://www.google.com/maps/dir/?api=1&amp;origin=Rua%20Miguel%20Matte%2C%20130%2C%20Balne%C3%A1rio%20Cambori%C3%BA%2C%20SC&amp;destination=Deck%20do%20Pontal%20Norte%2C%20Balne%C3%A1rio%20Cambori%C3%BA&amp;travelmode=walking" target="_blank" rel="noopener noreferrer">Ver o deck no mapa</a></article><article hidden><p class="nearby-tag">Edifício Mar Azul</p><h2>Uma vaga rotativa</h2><p>Uma vaga de garagem por estadia, com acessos pela Rua Miguel Matte.</p><a href="#garagem">Ver foto da garagem</a></article><article hidden><p class="nearby-tag">Apartamento</p><h2>Até 4 hóspedes</h2><p>Cama king no quarto, sofá retrátil e cama compacta na sala.</p><a href="#cama">Ver foto do quarto</a></article><article hidden><p class="nearby-tag">Temporada</p><h2>Réveillon na Barra Norte</h2><p>Consulte o pacote de cinco noites no calendário.</p><a href="#datas">Consultar datas</a></article></div>
+<div class="nearby-controls"><button id="nearbyPrev" type="button" aria-label="Destaque anterior">‹</button><span id="nearbyCount" aria-hidden="true">1 / 7</span><button id="nearbyNext" type="button" aria-label="Próximo destaque">›</button><button id="nearbyPause" type="button">Pausar</button></div>
+</section>
 <section class="booking-facts"><h2>Temporada em Pioneiros</h2>
 <p>Apartamento para até 4 hóspedes, com cama king no quarto, sofá retrátil e cama compacta na sala, vista da janela e uma vaga rotativa por estadia. Endereço: Rua Miguel Matte, 130, Balneário Camboriú.</p>
 <p>Réveillon de 29/12/2026 a 03/01/2027: R$ 8.490 por 5 noites. Carnaval de 05 a 10/02/2027: R$ 3.500 por 5 noites. Selecione as suas datas para consultar o preço de hospedagem.</p></section>
@@ -463,6 +489,42 @@ show(0);
 
 
 
+
+(() => {
+ const panel=$('nearby'), cards=[...panel.querySelectorAll('article')], pause=$('nearbyPause');
+ const preference=matchMedia('(prefers-reduced-motion: reduce)');
+ let current=0,timer=0,playing=!preference.matches,focused=false,hovered=false,visible=true;
+ function render(index){
+   current=(index+cards.length)%cards.length;
+   cards.forEach((card,i)=>{card.hidden=i!==current;});
+   $('nearbyCount').textContent=(current+1)+' / '+cards.length;
+ }
+ function sync(){
+   clearInterval(timer);
+   const active=playing&&visible&&!focused&&!hovered&&!document.hidden;
+   panel.dataset.play=active?'on':'off';
+   pause.textContent=playing?'Pausar':'Reproduzir';
+   if(active)timer=setInterval(()=>render(current+1),4800);
+ }
+ for(const [key,dir] of [['nearbyPrev',-1],['nearbyNext',1]]){
+   $(key).onclick=()=>{render(current+dir);sync();};
+ }
+ pause.onclick=()=>{playing=!playing;sync();};
+ panel.addEventListener('focusin',()=>{focused=true;sync();});
+ panel.addEventListener('focusout',event=>{if(!panel.contains(event.relatedTarget)){focused=false;sync();}});
+ panel.addEventListener('mouseenter',()=>{hovered=true;sync();});
+ panel.addEventListener('mouseleave',()=>{hovered=false;sync();});
+ panel.querySelectorAll('a[href^="#"]').forEach(link=>link.addEventListener('click',event=>{
+   event.preventDefault();
+   const key=link.getAttribute('href').slice(1);
+   if(key==='datas')openDates();
+   else {go(scenes.findIndex(scene=>scene.key===key));$('stage').scrollIntoView({block:'start'});}
+ }));
+ preference.addEventListener('change',()=>{playing=!preference.matches;sync();});
+ document.addEventListener('visibilitychange',sync);
+ if('IntersectionObserver' in window)new IntersectionObserver(([entry])=>{visible=entry.isIntersecting;sync();}).observe(panel);
+ sync();
+})();
 </script>
 </body>
 </html>
