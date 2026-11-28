@@ -28,14 +28,21 @@ for (const [name, data] of Object.entries(files)) {
   if (/\.(webp|png|jpe?g)$/i.test(name)) await writeFile('dist/media/' + name, Buffer.from(data, 'base64'));
 }
 for (const name of ['quartoVideo.mp4', 'vistaVideo.mp4']) await rm('dist/media/' + name, { force: true });
-const intro = "<dialog id=\"barraNorteIntro\" aria-label=\"Aftermovie da Barra Norte\" style=\"box-sizing:border-box;width:min(96vw,960px);max-width:none;max-height:96dvh;padding:0;border:1px solid #ffffff44;border-radius:16px;background:#101720;color:#fcf4e6\">\n<form method=\"dialog\" style=\"display:flex;justify-content:flex-end;padding:.45rem .7rem\"><button type=\"submit\" autofocus>Ir ao apartamento</button></form>\n<iframe data-src=\"/aftermovie.html\" title=\"Aftermovie e fotos da Barra Norte\" allow=\"autoplay; encrypted-media; fullscreen; picture-in-picture\" allowfullscreen style=\"display:block;border:0;width:100%;height:min(83dvh,860px)\"></iframe>\n</dialog>\n<script>\n(() => {\n  const dialog = document.querySelector('#barraNorteIntro');\n  try { if (sessionStorage.getItem('barra-norte-intro')) return; } catch {}\n  if (typeof dialog.showModal !== 'function') return;\n  const frame = dialog.querySelector('iframe');\n  dialog.addEventListener('close', () => {\n    frame.removeAttribute('src');\n    try { sessionStorage.setItem('barra-norte-intro', '1'); } catch {}\n  });\n  frame.src = frame.dataset.src;\n  dialog.showModal();\n})();\n</script>";
+const intro = "<dialog id=\"barraNorteIntro\" aria-label=\"Aftermovie da Barra Norte\" style=\"box-sizing:border-box;width:min(96vw,960px);max-width:none;max-height:96dvh;padding:0;border:1px solid #ffffff44;border-radius:16px;background:#101720;color:#fcf4e6\">\n<form method=\"dialog\" style=\"display:flex;justify-content:flex-end;padding:.45rem .7rem\"><button type=\"submit\" autofocus>Ir ao apartamento</button></form>\n<iframe data-src=\"/aftermovie.html\" title=\"Aftermovie e fotos da Barra Norte\" allow=\"autoplay; encrypted-media; fullscreen; picture-in-picture\" allowfullscreen style=\"display:block;border:0;width:100%;height:min(83dvh,860px)\"></iframe>\n</dialog>\n<script>\n(() => {\n  if (new URLSearchParams(location.search).get('reserva') === '1') {\n    document.getElementById('datesButton')?.click();\n    return;\n  }\n  const dialog = document.querySelector('#barraNorteIntro');\n  try { if (sessionStorage.getItem('barra-norte-intro')) return; } catch {}\n  if (typeof dialog.showModal !== 'function') return;\n  const frame = dialog.querySelector('iframe');\n  dialog.addEventListener('close', () => {\n    frame.removeAttribute('src');\n    try { sessionStorage.setItem('barra-norte-intro', '1'); } catch {}\n  });\n  frame.src = frame.dataset.src;\n  dialog.showModal();\n})();\n</script>";
 const legacyModal = /<dialog id="welcome"[\s\S]*?<\/dialog>/g;
 const legacyScript = /\(\(\) => \{\s*const welcome=\$\('welcome'\),[\s\S]*?\n\s*welcome\.showModal\(\);\s*show\(0\);\s*\n\}\)\(\);/g;
 if ([...page.matchAll(legacyModal)].length !== 1 || [...page.matchAll(legacyScript)].length !== 1) {
   throw new Error('A abertura anterior mudou. Revise a integração do aftermovie.');
 }
 const home = page.replace(legacyModal, '').replace(legacyScript, '').replace('</body>', () => intro + '\n</body>');
-await writeFile('dist/aftermovie.html', await readFile('aftermovie.html'));
+const aftermovie = await readFile('aftermovie.html', 'utf8');
+await writeFile('dist/aftermovie.html', aftermovie);
+await writeFile('dist/proposta.html', await readFile('proposta.html'));
+const shots = [...aftermovie.matchAll(/<img class="shot(?: active)?" src="data:image\/webp;base64,([A-Za-z0-9+/=]+)"/g)];
+if (shots.length !== 4) throw new Error('Fotos da Barra Norte não encontradas');
+for (const [index, name] of ['atlantica', 'deck', 'roda'].entries()) {
+  await writeFile('dist/media/proposta-' + name + '.webp', Buffer.from(shots[index][1], 'base64'));
+}
 await writeFile('dist/index.html', home.replace('</title>', '</title>\n' + seo));
 await writeFile('dist/robots.txt', 'User-agent: *\nAllow: /\nSitemap: ' + new URL('sitemap.xml', canonical).href + '\n');
 await writeFile('dist/sitemap.xml', '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url><loc>' + escape(canonical) + '</loc></url></urlset>\n');
