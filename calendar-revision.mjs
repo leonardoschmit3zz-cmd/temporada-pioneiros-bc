@@ -1,5 +1,5 @@
-export const notice = 'Pacotes promocionais para combos a partir de 3 noites';
-const tiers = [[3,5],[5,8],[7,12],[15,15]];
+export const notice = '';
+const tiers = [];
 const changes = [
   ["['2026-12-26','2026-12-28',750,0]", "['2026-12-01','2026-12-28',750,0]"],
   ["['2026-12-29','2027-01-02',0,8490]", "['2026-12-29','2027-01-02',1698,0]"],
@@ -9,15 +9,19 @@ const changes = [
   ["maximumFractionDigits:0", "maximumFractionDigits:2"],
   ["let start = null, end = null, selectionError = '';", "let start = null, end = null, anchor = null, selectionError = '', previousTier = 0;"],
   [/function quoteStay\(first,last\)\{[\s\S]*?\n\}/, `function quoteStay(first,last){
-    let subtotal=0;
+    let subtotal=0, discount=0, eligible=0, threshold=0, percent=0;
     for(let stamp=first;stamp<=last;stamp+=day){
       const offer=offers.find(item=>stamp>=item.a&&stamp<=item.b);
       if(!offer||occupied(stamp))return {error:'O intervalo inclui uma noite indisponível.'};
-      subtotal+=offer.rate*100;
+      const nightly=offer.rate*100;
+      subtotal+=nightly;
+      const peak=stamp>=Date.parse('2026-12-29')&&stamp<=Date.parse('2027-01-02')||stamp>=Date.parse('2027-02-05')&&stamp<=Date.parse('2027-02-09');
+      if(!peak){
+        eligible++;
+        [threshold,percent]=${JSON.stringify(tiers)}.filter(([limit])=>eligible>=limit).at(-1)||[0,0];
+        discount+=Math.round(nightly*percent/100);
+      }
     }
-    const count=(last-first)/day+1;
-    const [threshold,percent]=${JSON.stringify(tiers)}.filter(([limit])=>count>=limit).at(-1)||[0,0];
-    const discount=Math.round(subtotal*percent/100);
     return {subtotal:subtotal/100,discount:discount/100,total:(subtotal-discount)/100,threshold,percent};
   }`],
   [/function selectNight\(stamp\)\{[\s\S]*?(?=\nfunction renderCalendar)/, `function selectNight(stamp){
@@ -67,7 +71,7 @@ const changes = [
   if(start===null)previousTier=0;
 `],
   ["  summary.textContent+=' · '+currency.format(quote.total)+' em hospedagem';", `  if(quote.threshold){
-    combo.textContent='Combo '+quote.threshold+'+ noites · '+quote.percent+'% de desconto';
+    combo.textContent='Combo '+quote.threshold+'+ noites comuns · até '+quote.percent+'% nas diárias elegíveis';
     combo.hidden=false;
     if(quote.threshold>previousTier)celebrateCombo();
   }
@@ -80,6 +84,7 @@ const changes = [
     return;
   }`],
   ["start=null;end=null;selectionError='';renderCalendar();","start=null;end=null;anchor=null;selectionError='';renderCalendar();"],
+  ["Réveillon de 29/12/2026 a 03/01/2027: R$ 8.490 por 5 noites. Carnaval de 05 a 10/02/2027: R$ 3.500 por 5 noites.", "Réveillon de 29/12/2026 a 02/01/2027: R$ 1.698 por noite. Carnaval de 05 a 09/02/2027: R$ 700 por noite."],
   ["Réveillon e Carnaval têm pacotes de 5 noites. ",""],
   ["Preço por noite. Réveillon e Carnaval são pacotes de 5 noites.", "Clique na primeira e na última noite. Para ajustar o total, clique em outra última noite ou em Limpar."]
 ];
@@ -89,7 +94,7 @@ export function reviseCalendar(source){
     if(typeof oldValue==='string'?!result.includes(oldValue):!new RegExp(oldValue.source).test(result))throw new Error('Trecho do calendário não encontrado: '+String(oldValue).slice(0,90));
     result=result.replace(oldValue,()=>newValue);
   }
-  return result.replace('<div class="monthbar">','<aside class="promo-note">'+notice+'. <small>3+ noites 5% · 5+ noites 8% · 7+ noites 12% · 15+ noites 15%</small></aside><div class="monthbar">');
+  return notice ? result.replace('<div class="monthbar">','<aside class="promo-note">'+notice+'. <small>3ª–4ª: 3% · 5ª–6ª: 4% · 7ª–14ª: 5% · 15ª em diante: 6%. Válido apenas nas noites comuns. Réveillon e Carnaval têm preço cheio.</small></aside><div class="monthbar">') : result;
 }
 export const promoStyles = `<style>
 .promo-note{display:block;background:#e6f1e8;color:#173c31;border:1px solid #c4d9ca;border-radius:9px;padding:.65rem .8rem;margin:.7rem 0;font:650 .9rem/1.35 system-ui}
