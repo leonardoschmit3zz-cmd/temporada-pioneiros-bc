@@ -32,7 +32,7 @@ html.booking-minimal .tour{display:none!important}
 .booking-page{width:min(1080px,calc(100% - 32px));margin:auto;padding:1rem 0 2rem;color:#142c29}
 .booking-page>.return{display:inline-block;padding:.6rem 0;color:#153c34} .booking-page h2{font:1.6rem Georgia,serif;margin:1.2rem 0 .65rem}
 html.booking-minimal #dates{position:static;inset:auto;transform:none;box-sizing:border-box;display:block;background:#fff;color:#142c29;border:1px solid #d2d9cf;border-radius:14px;width:min(100%,620px);max-width:none;height:auto;max-height:none;overflow:visible;margin:0 auto;padding:clamp(.7rem,3vw,1.5rem);box-shadow:none}
-html.booking-minimal #dates a,html.booking-minimal #dates small,html.booking-minimal #dates p,html.booking-minimal #dates .day,html.booking-minimal #dates .price{color:#153c34}
+html.booking-minimal #dates a,html.booking-minimal #dates small,html.booking-minimal #dates p,html.booking-minimal #dates .day,html.booking-minimal #dates .price,html.booking-minimal #dates .day-price{color:#153c34}
 html.booking-minimal #dates button{color:#153c34;background:#f7f5ef;border-color:#c6d1ca}
 html.booking-minimal #dates .day:disabled{opacity:.52}
 html.booking-minimal #dates button[aria-pressed=true],html.booking-minimal #dates .actions a{background:#153c34;color:#fff}
@@ -98,7 +98,6 @@ if (bookingPage && document.documentElement.classList.contains('booking-minimal'
   bookingPage.querySelector('.calendar-slot').append(dates);
   dates.setAttribute('open','');
   const keepOpen = () => dates.setAttribute('open','');
-  matchMedia('(min-width: 1px)').addEventListener('change',keepOpen);
   new MutationObserver(keepOpenIfClosed).observe(dates,{attributes:true,attributeFilter:['open']});
   function keepOpenIfClosed(){if(!dates.open)keepOpen();}
   bookingPage.hidden = false;
